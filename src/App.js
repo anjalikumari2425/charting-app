@@ -7,6 +7,8 @@ function App() {
   const allKeys = Object.keys(data[0]);
   const dropDownKeys = allKeys.slice(1,-1);
   const [displayChartData, setDisplayChartData] =  useState([]);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const getAllValueOfKey = (key) => {
     return [...new Set(data.map((x) => {
       return x[key];
@@ -35,7 +37,7 @@ function App() {
     let filterData = {};
     for(let i=0; i < data.length;i++)
     {
-        if(checkForFilter(data[i], filterKey, filterValue))
+        if(checkForFilter(data[i], filterKey, filterValue) && (dateFilter(data[i])))
         {
             if(filterData[data[i]["Date"]] != null)
             {
@@ -56,30 +58,55 @@ function App() {
   const handleKeySelectChange = (e) => {
     setSelectedDropdownValue(e.target.value);
   }
+
+  function dateFilter(data)
+{
+    if (startDate == null || endDate == null || startDate == '' || endDate == '')
+    {
+        return true;
+    }
+    let dataDate = data["Date"].split("/");
+    let Date1 = new Date(dataDate[2], dataDate[1] - 1, dataDate[0]);
+    let Date2 = new Date(startDate).setHours(0,0,0,0);
+    let Date3 = new Date(endDate).setHours(0,0,0,0);
+
+    console.log("dateFilter", Date1, Date2, Date3);
+
+    return (Date1 >= Date2 && Date1 <= Date3);
+}
  
   useEffect(()=> {
+    console.log("startDate", startDate, endDate);
     let dataList = [];
     dataList = newDataFilter(dropDownKeys[dropdown], selectedDropdownKeys[selectedDropdownValue]);
     setDisplayChartData(dataList);
-  }, [dropdown, selectedDropdownValue]);
+  }, [dropdown, selectedDropdownValue, startDate, endDate]);
 
+  const handleStartDate = (e) => {
+    setStartDate(e.target.value);
+  }
+  const handleEndDate = (e) => {
+    setEndDate(e.target.value);
+  }
 
    return (
     <div className="App">
-      <select class="user-selection" onChange={handleChange}>
+      <select className="user-selection" onChange={handleChange}>
         {
           dropDownKeys && dropDownKeys.map((item,index)=> (
             <option value={index}>{item}</option>
           ))
         }
       </select>
-      {selectedDropdownKeys && <select onChange={handleKeySelectChange}>
+      {selectedDropdownKeys && <select className="user-selection-value" onChange={handleKeySelectChange}>
         {
           selectedDropdownKeys && selectedDropdownKeys.map((item,index)=> (
             <option value={index}>{item}</option>
           ))
         }
       </select>}
+      StartDate <input className="start-date" type="date" onChange={handleStartDate}/>
+      End Date <input className="end-date" type="date" onChange={handleEndDate}/>
        <DisplayChart data={displayChartData}/>
        <hr/>
        <table>

@@ -72,3 +72,11 @@ tr:hover {
   margin-bottom: 1em;
   margin-top: 1em;
 }
+
+.user-selection-value {
+  margin-right: 1em;
+}
+
+.start-date {
+  margin-right: 1em;
+}
