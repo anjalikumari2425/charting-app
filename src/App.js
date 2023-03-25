@@ -66,7 +66,7 @@ function App() {
 
    return (
     <div className="App">
-      <select onChange={handleChange}>
+      <select class="user-selection" onChange={handleChange}>
         {
           dropDownKeys && dropDownKeys.map((item,index)=> (
             <option value={index}>{item}</option>

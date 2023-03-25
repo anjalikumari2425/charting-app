@@ -66,3 +66,9 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #e6e6e6;
 }
+
+.user-selection {
+  margin-right: 1em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}

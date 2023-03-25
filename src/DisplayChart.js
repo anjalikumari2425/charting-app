@@ -6,7 +6,7 @@ export default function DisplayChart(props) {
    const {data} = props;
   
    return (
-     <div style={{width: '80%', height: '500px'}}>
+     <div style={{width: '100%', height: '500px'}}>
        <ResponsiveContainer width="100%" height="100%">
        <LineChart
           width={500}
