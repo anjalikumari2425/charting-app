@@ -80,7 +80,28 @@ function App() {
           ))
         }
       </select>}
-       <DisplayChart data={displayChartData}/> 
+       <DisplayChart data={displayChartData}/>
+       <hr/>
+       <table>
+         <thead>
+         <tr>
+           <th>
+             Date
+           </th>
+           <th>
+             Daily Users
+           </th>
+         </tr>
+         </thead>
+         
+         {Object.values(displayChartData).map((x) => {
+            return (<tr>
+              <td>{x['date']}</td>
+              <td>{x["Daily Users"]}</td>
+            </tr>)
+          })
+          }
+       </table> 
     </div>
   );
 }
