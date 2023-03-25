@@ -1,7 +1,7 @@
 import './App.css';
 import data from './data/data.json';
 import { useEffect, useState } from 'react';
-import DisplayChartRecharts from './DisplayChartRecharts';
+import DisplayChart from './DisplayChart';
 
 function App() {
   const allKeys = Object.keys(data[0]);
@@ -80,7 +80,7 @@ function App() {
           ))
         }
       </select>}
-       <DisplayChartRecharts data={displayChartData}/> 
+       <DisplayChart data={displayChartData}/> 
     </div>
   );
 }
