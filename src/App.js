@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import data from './data/data.json';
+import { useState } from 'react';
 
 function App() {
-  return (
+  const keys = Object.keys(data[0]);
+  const [dropdown, setDropdownValue] = useState(0);
+
+  const handleChange = (e) => {
+    console.log("dropdown", e.target.value);
+    setDropdownValue(e.target.value);
+  }
+   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <select onChange={handleChange}>
+        {
+          keys && keys.map((item,index)=> (
+            <option value={index}>{item}</option>
+          ))
+        }
+      </select>
+        
     </div>
   );
 }
