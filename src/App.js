@@ -70,13 +70,10 @@ function App() {
     let Date2 = new Date(startDate).setHours(0,0,0,0);
     let Date3 = new Date(endDate).setHours(0,0,0,0);
 
-    console.log("dateFilter", Date1, Date2, Date3);
-
     return (Date1 >= Date2 && Date1 <= Date3);
 }
  
   useEffect(()=> {
-    console.log("startDate", startDate, endDate);
     let dataList = [];
     dataList = newDataFilter(dropDownKeys[dropdown], selectedDropdownKeys[selectedDropdownValue]);
     setDisplayChartData(dataList);
