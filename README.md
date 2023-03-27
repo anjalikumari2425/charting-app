@@ -1,4 +1,4 @@
-# Kwalee-Assesment
+# Charting-app
 
 Steps to run the project:
 
